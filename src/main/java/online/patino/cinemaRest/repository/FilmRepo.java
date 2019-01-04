@@ -11,7 +11,7 @@ import java.util.List;
 public interface FilmRepo extends JpaRepository<Film, Serializable> {
     Film findById(Long Id);
     List<Film> findByTitle (String title);
-    Film findByIdAndTitle(Long id, String title);
+    Film findByTitleAndId(String title, Long id);
 
 
 }

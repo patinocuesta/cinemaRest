@@ -45,6 +45,9 @@ public class PersonService {
             return false;
         }
     }
+    public MPerson getMPersonById (Long id){
+        return new MPerson (personRepo.findById(id));
+    }
 
     public MPerson getMPersonByIdGivennameSurname(Long id,String givenname, String surname){
         return new MPerson(personRepo.findByIdAndGivennameAndSurname(id,givenname,surname));

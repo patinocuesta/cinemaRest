@@ -4,22 +4,31 @@ import online.patino.cinemaRest.entity.Person;
 import online.patino.cinemaRest.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
 @RestController
-@RequestMapping ("/v1")
+@RequestMapping ("/persons")
 public class PersonController {
     @Autowired
     @Qualifier("PersonService")
     PersonService personservice;
 
-    @PutMapping("/createperson")
-    public boolean createPerson(@RequestBody @Valid Person person){
+    @PutMapping("/create")
+    public boolean createPerson(@RequestBody @Valid Person person) {
         return personservice.create(person);
+    }
+
+    @PostMapping("/edit")
+    public boolean editPerson(@RequestBody @Valid Person person) {
+        return personservice.update(person);
+    }
+
+    @DeleteMapping("/delete/{id}/{surname}/{givenname}")
+    public boolean deletePerson (@PathVariable ("id") Long id,
+                                 @PathVariable ("surname") String givenname,
+                                 @PathVariable ("givenname")String surname){
+        return personservice.delete(id, surname, givenname);
     }
 }

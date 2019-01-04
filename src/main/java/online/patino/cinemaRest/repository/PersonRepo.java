@@ -1,5 +1,6 @@
 package online.patino.cinemaRest.repository;
 
+import online.patino.cinemaRest.entity.Film;
 import online.patino.cinemaRest.entity.Person;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -15,5 +16,6 @@ public interface PersonRepo extends JpaRepository<Person, Serializable> {
     List<Person> findByGivennameAndSurname(String givenname, String surname);
     Person findByIdAndGivennameAndSurname(Long id,String givenname, String surname);
     List<Person> findByBirthday (Date birthday);
+
 
 }

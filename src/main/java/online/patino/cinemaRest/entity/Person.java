@@ -29,8 +29,8 @@ public class Person implements Serializable {
 
     @OneToMany(
             mappedBy = "person",
-            cascade = CascadeType.ALL,
-            orphanRemoval = true
+            cascade = {CascadeType.PERSIST, CascadeType.MERGE}
+           // orphanRemoval = true
     )
     private Set<Play> persons;
 

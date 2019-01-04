@@ -4,6 +4,7 @@ import online.patino.cinemaRest.converter.CFilm;
 import online.patino.cinemaRest.entity.Film;
 import online.patino.cinemaRest.model.MFilm;
 import online.patino.cinemaRest.repository.FilmRepo;
+import online.patino.cinemaRest.repository.PersonRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -15,7 +16,6 @@ public class FilmService {
     @Autowired
     @Qualifier ("FilmRepo")
     private FilmRepo filmRepo;
-
     @Autowired
     @Qualifier ("CFilm")
     private CFilm cfilm;
@@ -30,15 +30,16 @@ public class FilmService {
     }
     public boolean update (Film film){
         try{
-            filmRepo.save(film);
+           filmRepo.save(film);
+
             return true;
         }catch(Exception e){
             return false;
         }
     }
-    public boolean delete (String title, Long id){
+    public boolean delete (Long id, String title){
         try{
-            Film film = filmRepo.findByIdAndTitle(id, title);
+            Film film = filmRepo.findByTitleAndId(title, id);
             filmRepo.delete(film);
             return true;
         }catch(Exception e){
@@ -51,7 +52,7 @@ public class FilmService {
     }
 
     public MFilm getMFilmByTitleAndId (Long id, String title){
-        return new MFilm(filmRepo.findByIdAndTitle(id, title));
+        return new MFilm(filmRepo.findByTitleAndId(title, id));
     }
 
     public List<MFilm> getMFilmByTitle (String title){
