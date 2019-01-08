@@ -1,6 +1,7 @@
 package online.patino.cinemaRest.controller;
 
 import online.patino.cinemaRest.entity.Film;
+import online.patino.cinemaRest.entity.Person;
 import online.patino.cinemaRest.service.FilmService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -17,7 +18,7 @@ public class FilmController {
 
     @PutMapping("/create")
     public boolean createFilm (@RequestBody @Valid Film film){
-        return filmservice.create(film);
+         return filmservice.create(film);
     }
     @PostMapping ("/edit")
     public boolean editFilm (@RequestBody @Valid Film film){

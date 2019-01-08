@@ -34,15 +34,19 @@ public class GenreService {
             genreRepo.save(genre);
             return true;
         }catch(Exception e){
+
             return false;
         }
     }
-    public boolean delete (Long id, String name){
+    public boolean delete (Long id){
         try{
-            Genre genre = genreRepo.findByIdAndName(id, name);
+
+            Genre genre = genreRepo.findById(id);
             genreRepo.delete(genre);
             return true;
         }catch(Exception e){
+            Genre genre = genreRepo.findById(id);
+            if(genre.getFilms().size()>0){ throw new IllegalStateException("le genre '"+genre.getName()+"' est associé à des films");}
             return false;
         }
     }
