@@ -2,6 +2,7 @@ package online.patino.cinemaRest.entity;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -29,6 +30,7 @@ public class Film implements Serializable  {
     private String image_path;
     @Column(name = "summary", nullable = false)
     private String summary;
+
     @ManyToOne @JoinColumn(name = "film_director")
     @JsonProperty("film_director")
     private Person film_director;
@@ -37,13 +39,13 @@ public class Film implements Serializable  {
     @DateTimeFormat(pattern = "dd/MM/yyyy")
     @Temporal(TemporalType.DATE)
     private Date release_date;
-
+    @JsonManagedReference
     @OneToMany(
             mappedBy = "film",
             cascade = {CascadeType.PERSIST, CascadeType.MERGE})
 
     private Set<Play> persons;
-
+    @JsonManagedReference
     @ManyToMany( fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(name = "film_genre",
             joinColumns = @JoinColumn(name = "film_id"),

@@ -20,4 +20,5 @@ public interface PlayRepo extends JpaRepository<Play, Serializable> {
     Play findByIdAndFilm (Long id, Film film);
     Play findByIdAndPerson (Long id, Person person);
     List<Play> findByFilmAndPerson (Film film, Person person);
+
 }

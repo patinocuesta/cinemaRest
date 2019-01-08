@@ -51,6 +51,10 @@ public class GenreService {
         }
     }
 
+    public MGenre getMGenreById (Long id){
+        return new MGenre(genreRepo.findById(id));
+    }
+
     public List<MGenre> getListMGenre(){
         return cgenre.converList(genreRepo.findAll());
     }

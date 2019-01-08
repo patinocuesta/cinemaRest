@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 
 @RestController
-@RequestMapping ("/persons")
-public class PersonController {
+@RequestMapping ("/api/persons")
+public class PersonRestController {
     @Autowired
     @Qualifier("PersonService")
     PersonService personservice;

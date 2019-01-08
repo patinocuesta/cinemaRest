@@ -1,5 +1,7 @@
 package online.patino.cinemaRest.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Set;
@@ -13,6 +15,7 @@ public class Genre implements Serializable {
     private Long id;
     @Column(name = "name", nullable = false, length = 30)
     private String name;
+    @JsonBackReference
     @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE},
             mappedBy = "genres")
     private Set<Film> films;

@@ -1,5 +1,6 @@
 package online.patino.cinemaRest.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import org.springframework.format.annotation.DateTimeFormat;
 import javax.persistence.*;
 import java.io.Serializable;
@@ -23,7 +24,7 @@ public class Person implements Serializable {
     @DateTimeFormat(pattern = "dd/MM/yyyy")
     @Temporal(TemporalType.DATE)
     private Date birthday;
-
+    @JsonBackReference
     @OneToMany(mappedBy = "film_director")
     private Set<Film> filmsReal;
 
