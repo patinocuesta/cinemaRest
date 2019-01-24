@@ -16,16 +16,12 @@ public class FilmController {
 
     @Autowired
     FilmService filmManager;
-
     @Autowired
     PersonService personManager;
-
     @Autowired
     GenreService genreManager;
     @Autowired
     PlayService playManager;
-
-
 
 
     @Autowired
@@ -63,7 +59,6 @@ public class FilmController {
         return "film/form";
     }
 
-
     @PostMapping("/add")
     public String submit(@ModelAttribute Film film) {
         filmManager.create(film);
@@ -72,7 +67,7 @@ public class FilmController {
 
     @GetMapping("/rmrole/{id}")
     public String rmRole(@PathVariable("id") Long id) {
-        filmManager.delete(id,);
+        filmManager.delete(id);
         return "redirect:/film/mod/" + filmId;
     }
 

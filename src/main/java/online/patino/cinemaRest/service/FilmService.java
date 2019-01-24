@@ -39,9 +39,9 @@ public class FilmService {
             return false;
         }
     }
-    public boolean delete (Long id, String title){
+    public boolean delete (Long id){
         try{
-            Film film = filmRepo.findByTitleAndId(title, id);
+            Film film = filmRepo.findById(id);
             filmRepo.delete(film);
             return true;
         }catch(Exception e){
