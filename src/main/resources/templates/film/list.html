@@ -6,7 +6,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Liste des films</title>
+    <title>Liste des filmEntities</title>
     <div th:replace="fragments/layout :: header-css">
 
     </div>
@@ -18,18 +18,18 @@
 </div>
 
 <div class="ui container padded grid">
-    <div class="two column row" th:each="film: ${films}">
+    <div class="two column row" th:each="filmEntity: ${filmEntities}">
         <div class="one wide middle aligned column">
             <div class="ui tiny image">
                 <img src="http://fr.web.img4.acsta.net/r_1920_1080/pictures/15/10/18/18/56/052074.jpg"
-                th:src="@{'/img/poster/film/'+${film.id}}">
+                th:src="@{'/img/poster/filmEntity/'+${filmEntity.id}}">
             </div>
         </div>
         <div class="fifteen wide middle aligned column">
             <p class="">
-                <span th:text="${film.title}">Titre du film</span>
-                <a href="#" th:href="@{'/film/detail/'+${film.id}}"><i class="green small eye icon"></i></a>
-                <a href="#" th:href="@{'/film/mod/'+${film.id}}"><i class="small edit icon"></i></a>
+                <span th:text="${filmEntity.title}">Titre du filmEntity</span>
+                <a href="#" th:href="@{'/filmEntity/detail/'+${filmEntity.id}}"><i class="green small eye icon"></i></a>
+                <a href="#" th:href="@{'/filmEntity/mod/'+${filmEntity.id}}"><i class="small edit icon"></i></a>
                 <a href="#"><i class="red small erase icon"></i> </a>
             </p>
             </div>
@@ -39,7 +39,7 @@
 
 <div th:include="fragments/layout :: footer-js"></div>
 <script type="application/javascript">
-    $('#menu-films').addClass("active");
+    $('#menu-filmEntities').addClass("active");
 </script>
 
 </body>

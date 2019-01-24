@@ -7,8 +7,8 @@ xmlns:th="http://www.thymeleaf.org">
 </head>
 <body>
 <table>
-    <tr th:each="person: ${persons}">
-        <td><span th:utext="${person.surname}"></span> <a href="#" th:href="@{'/person/detail/'+${person.id}}">detail</a> </td>
+    <tr th:each="personEntity: ${personEntities}">
+        <td><span th:utext="${personEntity.surname}"></span> <a href="#" th:href="@{'/personEntity/detail/'+${personEntity.id}}">detail</a> </td>
     </tr>
 </table>
 

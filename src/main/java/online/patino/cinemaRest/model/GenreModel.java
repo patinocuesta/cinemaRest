@@ -1,20 +1,20 @@
 package online.patino.cinemaRest.model;
 
-import online.patino.cinemaRest.entity.Genre;
+import online.patino.cinemaRest.entity.GenreEntity;
 
-public class MGenre {
+public class GenreModel {
     private Long id;
     private String name;
 
-    public MGenre(){}
-    public MGenre(Long id, String name){
+    public GenreModel(){}
+    public GenreModel(Long id, String name){
         this.id= id;
         this.name = name;
     }
 
-    public MGenre(Genre genre){
-        this.id= genre.getId();
-        this.name = genre.getName();
+    public GenreModel(GenreEntity genreEntity){
+        this.id= genreEntity.getId();
+        this.name = genreEntity.getName();
     }
 
     public Long getId() {

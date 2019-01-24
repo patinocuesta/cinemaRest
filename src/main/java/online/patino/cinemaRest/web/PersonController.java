@@ -1,11 +1,8 @@
-package fr.laerce.cinema.web;
+package online.patino.cinemaRest.controller;
 
-import fr.laerce.cinema.dao.FilmDao;
-import fr.laerce.cinema.dao.PersonDao;
-import fr.laerce.cinema.dao.RoleDao;
-import fr.laerce.cinema.model.Person;
-import fr.laerce.cinema.model.Play;
-import fr.laerce.cinema.service.ImageManager;
+
+import online.patino.cinemaRest.service.FilmManager;
+import online.patino.cinemaRest.service.PersonManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,16 +15,16 @@ import java.io.IOException;
 @RequestMapping(value = "/person")
 public class PersonController {
     @Autowired
-    PersonDao personneDao;
+    PersonManager personManager;
 
     @Autowired
-    RoleDao roleDao;
+    Role roleDao;
 
     @Autowired
-    FilmDao filmDao;
+    FilmManager filmManager;
 
-    @Autowired
-    ImageManager imm;
+   // @Autowired
+   // ImageManager imm;
 
     @GetMapping("/list")
     public String list(Model model){

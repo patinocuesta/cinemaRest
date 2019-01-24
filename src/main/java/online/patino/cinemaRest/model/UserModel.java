@@ -1,11 +1,13 @@
-package online.patino.cinemaRest.entity;
+package online.patino.cinemaRest.model;
+
+import online.patino.cinemaRest.entity.ReviewEntity;
 
 import javax.persistence.*;
 import java.util.Set;
 
 @Entity
 @Table(name = "user")
-public class User {
+public class UserModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
@@ -23,7 +25,7 @@ public class User {
     @Column(name = "password", nullable = false, length = 120)
     private String password;
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<Review> reviews;
+    private Set<ReviewEntity> reviewEntities;
 
     public long getId() {
         return id;
@@ -67,12 +69,12 @@ public class User {
         this.password = password;
     }
 
-    public Set<Review> getReviews() {
-        return reviews;
+    public Set<ReviewEntity> getReviewEntities() {
+        return reviewEntities;
     }
 
-    public void setReviews(Set<Review> reviews) {
-        this.reviews = reviews;
+    public void setReviewEntities(Set<ReviewEntity> reviewEntities) {
+        this.reviewEntities = reviewEntities;
     }
 
     @Override
@@ -80,13 +82,13 @@ public class User {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        User user = (User) o;
+        UserModel userModel = (UserModel) o;
 
-        if (id != user.id) return false;
-        if (surname != null ? !surname.equals(user.surname) : user.surname != null) return false;
-        if (givenname != null ? !givenname.equals(user.givenname) : user.givenname != null) return false;
-        if (login != null ? !login.equals(user.login) : user.login != null) return false;
-        if (password != null ? !password.equals(user.password) : user.password != null) return false;
+        if (id != userModel.id) return false;
+        if (surname != null ? !surname.equals(userModel.surname) : userModel.surname != null) return false;
+        if (givenname != null ? !givenname.equals(userModel.givenname) : userModel.givenname != null) return false;
+        if (login != null ? !login.equals(userModel.login) : userModel.login != null) return false;
+        if (password != null ? !password.equals(userModel.password) : userModel.password != null) return false;
 
         return true;
     }

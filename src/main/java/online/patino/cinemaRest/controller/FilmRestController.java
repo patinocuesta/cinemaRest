@@ -1,14 +1,11 @@
 package online.patino.cinemaRest.controller;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import online.patino.cinemaRest.entity.Film;
-import online.patino.cinemaRest.entity.Genre;
-import online.patino.cinemaRest.repository.GenreRepo;
-import online.patino.cinemaRest.entity.Person;
-import online.patino.cinemaRest.model.MFilm;
-import online.patino.cinemaRest.model.MGenre;
-import online.patino.cinemaRest.service.FilmService;
-import online.patino.cinemaRest.service.GenreService;
+import online.patino.cinemaRest.entity.FilmEntity;
+import online.patino.cinemaRest.entity.GenreEntity;
+import online.patino.cinemaRest.model.FilmModel;
+import online.patino.cinemaRest.model.GenreModel;
+import online.patino.cinemaRest.service.FilmManager;
+import online.patino.cinemaRest.service.GenreManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
@@ -21,26 +18,26 @@ import java.util.List;
 public class FilmRestController {
     @Autowired
     @Qualifier("FilmService")
-    FilmService filmservice;
+    FilmManager filmservice;
     @Autowired
     @Qualifier("GenreService")
-    GenreService genreService;
+    GenreManager genreManager;
     @PostMapping ("/list")
-    public List<MFilm> listFilms(){return  filmservice.getListMFilm();}
+    public List<FilmModel> listFilms(){return  filmservice.getListMFilm();}
     @PostMapping ("/{id}/films")
-        public List<MFilm> listFilmsGenre(@PathVariable ("id") Long id){
-        MGenre mGenre = genreService.getMGenreById(id) ;
-        Genre genre = new Genre(id, mGenre.getName());
-        return filmservice.findFilmsByGenre(genre);
+        public List<FilmModel> listFilmsGenre(@PathVariable ("id") Long id){
+        GenreModel genreModel = genreManager.getMGenreById(id) ;
+        GenreEntity genreEntity = new GenreEntity(id, genreModel.getName());
+        return filmservice.findFilmsByGenre(genreEntity);
         }
     @PutMapping("/create")
-    public boolean createFilm (@RequestBody @Valid Film film){return filmservice.create(film);}
+    public boolean createFilm (@RequestBody @Valid FilmEntity filmEntity){return filmservice.create(filmEntity);}
     @PostMapping ("/edit")
-    public boolean editFilm (@RequestBody @Valid Film film){
-        return filmservice.update(film);
+    public boolean editFilm (@RequestBody @Valid FilmEntity filmEntity){
+        return filmservice.update(filmEntity);
     }
     @DeleteMapping("/delete/{title}/{id}")
     public boolean deleteFilm (@PathVariable ("id") Long id, @PathVariable ("title") String title){
-        return filmservice.delete(id, title);
+        return filmservice.delete(id);
     }
 }

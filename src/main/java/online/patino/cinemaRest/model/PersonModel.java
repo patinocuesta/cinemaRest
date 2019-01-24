@@ -1,14 +1,10 @@
 package online.patino.cinemaRest.model;
 
-import online.patino.cinemaRest.entity.Person;
+import online.patino.cinemaRest.entity.PersonEntity;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import java.util.Date;
 
-public class MPerson {
+public class PersonModel {
 
     private Long id;
     private String surname;
@@ -17,7 +13,7 @@ public class MPerson {
     private Date birthday;
 
     //Nuestro Constructor
-    public MPerson(Long id, String surname, String givenname, String image_path, Date birthday) {
+    public PersonModel(Long id, String surname, String givenname, String image_path, Date birthday) {
         this.id = id;
         this.surname = surname;
         this.givenname = givenname;
@@ -25,13 +21,13 @@ public class MPerson {
         this.birthday = birthday;
     }
 
-    //Constructor avec person como argumento para pasar de entidad a modelo
-    public MPerson(Person person) {
-        this.id = person.getId();
-        this.surname = person.getSurname();
-        this.givenname = person.getGivenname();
-        this.image_path = person.getImage_path();
-        this.birthday = person.getBirthday();
+    //Constructor avec personEntity como argumento para pasar de entidad a modelo
+    public PersonModel(PersonEntity personEntity) {
+        this.id = personEntity.getId();
+        this.surname = personEntity.getSurname();
+        this.givenname = personEntity.getGivenname();
+        this.image_path = personEntity.getImage_path();
+        this.birthday = personEntity.getBirthday();
     }
 
     //Getters and Setters

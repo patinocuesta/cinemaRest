@@ -9,7 +9,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "persons")
-public class Person implements Serializable {
+public class PersonEntity implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
@@ -26,20 +26,20 @@ public class Person implements Serializable {
     private Date birthday;
     @JsonBackReference
     @OneToMany(mappedBy = "film_director")
-    private Set<Film> filmsReal;
+    private Set<FilmEntity> filmsReal;
 
     @OneToMany(
             mappedBy = "person",
             cascade = {CascadeType.PERSIST, CascadeType.MERGE}
            // orphanRemoval = true
     )
-    private Set<Play> persons;
+    private Set<PlayEntity> persons;
 
 //Constructor vacio para uso de Hibernate
-    public Person(){}
+    public PersonEntity(){}
 
 //Nuestro Constructor
-    public Person(Long id, String surname, String givenname, String image_path, Date birthday) {
+    public PersonEntity(Long id, String surname, String givenname, String image_path, Date birthday) {
         this.id = id;
         this.surname = surname;
         this.givenname = givenname;
@@ -79,16 +79,16 @@ public class Person implements Serializable {
         this.birthday = birthday;
     }
 
-    public Set<Film> getFilmsReal() {
+    public Set<FilmEntity> getFilmsReal() {
         return filmsReal;
     }
-    public void setFilmsReal(Set<Film> filmsReal) {
+    public void setFilmsReal(Set<FilmEntity> filmsReal) {
         this.filmsReal = filmsReal;
     }
-    public Set<Play> getPersons() {
+    public Set<PlayEntity> getPersons() {
         return persons;
     }
-    public void setPersons(Set<Play> persons) {
+    public void setPersons(Set<PlayEntity> persons) {
         this.persons = persons;
     }
 }

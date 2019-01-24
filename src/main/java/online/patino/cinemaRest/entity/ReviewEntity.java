@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.sql.Timestamp;
 
 @Entity
-public class Review {
+public class ReviewEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
@@ -17,10 +17,10 @@ public class Review {
     private Timestamp date;
     @ManyToOne
     @JoinColumn(name="film_id")
-    private Film film;
+    private FilmEntity filmEntity;
     @ManyToOne
     @JoinColumn(name="user_id")
-    private User user;
+    private UserEntity userEntity;
 
     public long getId() {
         return id;
@@ -47,20 +47,20 @@ public class Review {
         this.date = datte;
     }
 
-    public Film getFilm() {
-        return film;
+    public FilmEntity getFilmEntity() {
+        return filmEntity;
     }
 
-    public void setFilm(Film film) {
-        this.film = film;
+    public void setFilmEntity(FilmEntity filmEntity) {
+        this.filmEntity = filmEntity;
     }
 
-    public User getUser() {
-        return user;
+    public UserEntity getUserEntity() {
+        return userEntity;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUserEntity(UserEntity userEntity) {
+        this.userEntity = userEntity;
     }
 
     @Override
@@ -68,11 +68,11 @@ public class Review {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Review review = (Review) o;
+        ReviewEntity reviewEntity = (ReviewEntity) o;
 
-        if (id != review.id) return false;
-        if (article != null ? !article.equals(review.article) : review.article != null) return false;
-        if (date != null ? !date.equals(review.date) : review.date != null) return false;
+        if (id != reviewEntity.id) return false;
+        if (article != null ? !article.equals(reviewEntity.article) : reviewEntity.article != null) return false;
+        if (date != null ? !date.equals(reviewEntity.date) : reviewEntity.date != null) return false;
 
         return true;
     }

@@ -11,7 +11,7 @@ import java.util.Set;
 @Table(name = "films")
 @Entity
 
-public class Film implements Serializable  {
+public class FilmEntity implements Serializable  {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
@@ -27,7 +27,7 @@ public class Film implements Serializable  {
 
     @ManyToOne @JoinColumn(name = "film_director")
     @JsonProperty("film_director")
-    private Person film_director;
+    private PersonEntity film_director;
 
     @Column(name = "release_date", nullable = false)
     @DateTimeFormat(pattern = "dd/MM/yyyy")
@@ -38,19 +38,19 @@ public class Film implements Serializable  {
             mappedBy = "film",
             cascade = {CascadeType.PERSIST, CascadeType.MERGE})
 
-    private Set<Play> persons;
+    private Set<PlayEntity> persons;
     @JsonManagedReference
     @ManyToMany( fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(name = "film_genre",
             joinColumns = @JoinColumn(name = "film_id"),
             inverseJoinColumns = @JoinColumn(name = "genre_id"))
-    private Set<Genre> genres;
+    private Set<GenreEntity> genreEntities;
 
 
 //Constructor vacio para uso de Hibernate
-    public Film(){}
+    public FilmEntity(){}
 //Constructor
-    public Film(Long id, String title, double rating, String image_path, String summary, Person film_director, Date release_date){
+    public FilmEntity(Long id, String title, double rating, String image_path, String summary, PersonEntity film_director, Date release_date){
         this.id = id;
         this.title = title;
         this.rating = rating;
@@ -90,10 +90,10 @@ public class Film implements Serializable  {
     public void setSummary(String summary) {
         this.summary = summary;
     }
-    public Person getFilm_director() {
+    public PersonEntity getFilm_director() {
         return film_director;
     }
-    public void setFilm_director(Person film_director) {
+    public void setFilm_director(PersonEntity film_director) {
         this.film_director = film_director;
     }
     public Date getRelease_date() {
@@ -103,18 +103,18 @@ public class Film implements Serializable  {
         this.release_date = release_date;
     }
 
-    public Set<Play> getPersons() {
+    public Set<PlayEntity> getPersons() {
         return persons;
     }
-    public void setPersons(Set<Play> persons) {
+    public void setPersons(Set<PlayEntity> persons) {
         this.persons = persons;
     }
-    public Set<Genre> getGenres() {
-        return genres;
+    public Set<GenreEntity> getGenreEntities() {
+        return genreEntities;
     }
-    public void setGenres(Set<Genre> genres) {
-        this.genres = genres;
+    public void setGenreEntities(Set<GenreEntity> genreEntities) {
+        this.genreEntities = genreEntities;
     }
-    public void setDirector (Person director) {this.film_director = director;}
-    public Person getDirector(){ return film_director;}
+    public void setDirector (PersonEntity director) {this.film_director = director;}
+    public PersonEntity getDirector(){ return film_director;}
 }

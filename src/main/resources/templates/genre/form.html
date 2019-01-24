@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Gestion des genres</title>
+    <title>Gestion des genreEntities</title>
     <div th:replace="fragments/layout :: header-css"></div>
 </head>
 <body>
@@ -10,12 +10,12 @@
 
 <div class="ui modal">
     <div class="Header">
-        Modification/Ajout d'un genre
+        Modification/Ajout d'un genreEntity
     </div>
     <div class="ui padded form">
-        <input type="hidden" name="id" id="id-genre">
+        <input type="hidden" name="id" id="id-genreEntity">
         <div class="fourteen wide field">
-            <input type="text" name="name" th:value="*{name}" id="name-genre">
+            <input type="text" name="name" th:value="*{name}" id="name-genreEntity">
         </div>
         <div class="actions">
 
@@ -38,10 +38,10 @@
     </tr>
     </thead>
     <tbody>
-    <tr th:each="genre, rowStat: ${genres}">
-        <td th:text="${genre.name}" th:id="'genre'+ ${genre.id}">Un genre</td>
+    <tr th:each="genreEntity, rowStat: ${genreEntities}">
+        <td th:text="${genreEntity.name}" th:id="'genreEntity'+ ${genreEntity.id}">Un genreEntity</td>
         <td><a class="small circular ui blue icon button"
-               th:onclick="'openDialog(' + ${genre.id}+')'"><i class="small white edit icon"></i>
+               th:onclick="'openDialog(' + ${genreEntity.id}+')'"><i class="small white edit icon"></i>
         </a></td>
     </tr>
     </tbody>
@@ -49,29 +49,29 @@
 
 <div th:include="fragments/layout :: footer-js"></div>
 <script type="application/javascript">
-    $('#menu-genres').addClass("active");
+    $('#menu-genreEntities').addClass("active");
     $('.ui.dropdown').dropdown();
     $('.ui.modal').modal();
 
 
     function openDialog(idGenre) {
-        eltIdGenre = 'genre' + idGenre;
+        eltIdGenre = 'genreEntity' + idGenre;
         elt = document.getElementById(eltIdGenre);
         console.log(elt.textContent + " (id= '" + eltIdGenre + "')");
-        document.getElementById('id-genre').value = idGenre;
-        document.getElementById('name-genre').value = document.getElementById(eltIdGenre).textContent;
+        document.getElementById('id-genreEntity').value = idGenre;
+        document.getElementById('name-genreEntity').value = document.getElementById(eltIdGenre).textContent;
         $('.ui.modal').modal('show');
     }
 
     function validForm() {
         $('.ui.modal').modal('hide');
         genreVal = {
-            "id": document.getElementById('id-genre').value,
-            "name": document.getElementById('name-genre').value
+            "id": document.getElementById('id-genreEntity').value,
+            "name": document.getElementById('name-genreEntity').value
         };
         console.log(genreVal);
         $.ajax({
-            url: '/api/genre',
+            url: '/api/genreEntity',
             type: 'post',
             dataType: 'json',
             contentType: 'application/json',
@@ -83,7 +83,7 @@
 
     function onSuccessUpdateNameGenre(result) {
         console.log(result);
-        idElt = "#genre" + result.id;
+        idElt = "#genreEntity" + result.id;
         newName = result.name
         $(idElt).text(newName);
     }
@@ -102,7 +102,7 @@
 
     function eraseGenre() {
         $('.ui.modal').modal('hide');
-        console.log("Ecrire la méthode permettant de supprimer un genre");
+        console.log("Ecrire la méthode permettant de supprimer un genreEntity");
 
     }
 

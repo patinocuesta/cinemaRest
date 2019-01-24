@@ -1,7 +1,7 @@
 package online.patino.cinemaRest.converter;
 
-import online.patino.cinemaRest.entity.Play;
-import online.patino.cinemaRest.model.MPlay;
+import online.patino.cinemaRest.entity.PlayEntity;
+import online.patino.cinemaRest.model.PlayModel;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -9,10 +9,10 @@ import java.util.List;
 
 @Component("CPlay")
 public class CPlay {
-    public List<MPlay> converList(List<Play> plays) {
-        List<MPlay> mplays = new ArrayList<>();
-        for (Play play : plays) {
-            mplays.add(new MPlay(play));
+    public List<PlayModel> converList(List<PlayEntity> playEntities) {
+        List<PlayModel> mplays = new ArrayList<>();
+        for (PlayEntity playEntity : playEntities) {
+            mplays.add(new PlayModel(playEntity));
         }
         return mplays;
     }

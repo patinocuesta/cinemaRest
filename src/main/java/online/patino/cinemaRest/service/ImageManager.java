@@ -1,7 +1,7 @@
 package online.patino.cinemaRest.service;
 
-import online.patino.cinemaRest.entity.Film;
-import online.patino.cinemaRest.entity.Person;
+import online.patino.cinemaRest.entity.FilmEntity;
+import online.patino.cinemaRest.entity.PersonEntity;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -12,16 +12,16 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 @Component
-public class ImageService {
+public class ImageManager {
     @Value("${cinema.img.path}")
     String path;
 
-    public int savePhoto(Person p, InputStream fi){
+    public int savePhoto(PersonEntity p, InputStream fi){
         p.setImage_path(save("p", "personnes", fi));
         return 0;
     }
 
-    public int savePoster(Film f, InputStream fi) {
+    public int savePoster(FilmEntity f, InputStream fi) {
         f.setImage_path(save("f","affiches", fi));
         return 0;
     }

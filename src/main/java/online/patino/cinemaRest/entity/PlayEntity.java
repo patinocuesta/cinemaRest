@@ -7,7 +7,7 @@ import static javax.persistence.FetchType.LAZY;
 
 @Entity
 @Table(name="play")
-public class Play implements Serializable {
+public class PlayEntity implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
@@ -15,11 +15,11 @@ public class Play implements Serializable {
 
     @ManyToOne(fetch = LAZY)
     @MapsId("filmId")
-    private Film film;
+    private FilmEntity filmEntity;
 
     @ManyToOne(fetch = LAZY)
     @MapsId("person_Id")
-    private Person person;
+    private PersonEntity personEntity;
 
     @Column(name="rank")
     private Integer rank;
@@ -27,12 +27,12 @@ public class Play implements Serializable {
     @Column(name="name")
     private String name;
 
-    private Play(){}
+    private PlayEntity(){}
 
-    public Play(Long id, Film film, Person person, Integer rank, String name){
+    public PlayEntity(Long id, FilmEntity filmEntity, PersonEntity personEntity, Integer rank, String name){
         this.id= id;
-        this.film= film;
-        this.person= person;
+        this.filmEntity = filmEntity;
+        this.personEntity = personEntity;
         this.rank = rank;
         this.name = name;
     }
@@ -43,17 +43,17 @@ public class Play implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
-    public Film getFilm() {
-        return film;
+    public FilmEntity getFilmEntity() {
+        return filmEntity;
     }
-    public void setFilm(Film film) {
-        this.film = film;
+    public void setFilmEntity(FilmEntity filmEntity) {
+        this.filmEntity = filmEntity;
     }
-    public Person getPerson() {
-        return person;
+    public PersonEntity getPersonEntity() {
+        return personEntity;
     }
-    public void setPerson(Person person) {
-        this.person = person;
+    public void setPersonEntity(PersonEntity personEntity) {
+        this.personEntity = personEntity;
     }
     public Integer getRank() {
         return rank;

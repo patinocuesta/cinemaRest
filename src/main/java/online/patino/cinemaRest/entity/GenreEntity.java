@@ -8,7 +8,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "genres")
-public class Genre implements Serializable {
+public class GenreEntity implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
@@ -18,10 +18,10 @@ public class Genre implements Serializable {
     @JsonBackReference
     @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE},
             mappedBy = "genres")
-    private Set<Film> films;
-    private Genre(){}
+    private Set<FilmEntity> filmEntities;
+    private GenreEntity(){}
 
-    public Genre(Long id, String name){
+    public GenreEntity(Long id, String name){
         this.id= id;
         this.name = name;
     }
@@ -39,10 +39,10 @@ public class Genre implements Serializable {
         this.name = name;
     }
 
-    public Set<Film> getFilms() {
-        return films;
+    public Set<FilmEntity> getFilmEntities() {
+        return filmEntities;
     }
-    public void setFilms(Set<Film> films) {
-        this.films = films;
+    public void setFilmEntities(Set<FilmEntity> filmEntities) {
+        this.filmEntities = filmEntities;
     }
 }

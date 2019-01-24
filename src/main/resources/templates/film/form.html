@@ -15,16 +15,16 @@
 <form
         action="#"
         class="ui form"
-        id="film-form"
+        id="filmEntity-form"
         method="post"
-        th:action="@{/film/add}"
-        th:object="${film}"
+        th:action="@{/filmEntity/add}"
+        th:object="${filmEntity}"
 >
-    <input th:field="${film.id}" type="hidden">
-    <input th:field="${film.imagePath}" type="hidden">
+    <input th:field="${filmEntity.id}" type="hidden">
+    <input th:field="${filmEntity.imagePath}" type="hidden">
     <div class="field">
         <label>Titre</label>
-        <input th:field="${film.title}" type="text">
+        <input th:field="${filmEntity.title}" type="text">
     </div>
     <div class="three fields">
         <div class="two wide field">
@@ -37,11 +37,11 @@
         </div>
         <div class="ten wide field">
             <label>Réalisateur</label>
-            <select th:field="${film.director}" class="ui search dropdown">
+            <select th:field="${filmEntity.director}" class="ui search dropdown">
                 <option
-                        th:each="person: ${persons}"
-                        th:text="${person.givenname}+' '+${person.surname}"
-                        th:value="${person.id}"
+                        th:each="personEntity: ${personEntities}"
+                        th:text="${personEntity.givenname}+' '+${personEntity.surname}"
+                        th:value="${personEntity.id}"
 
                 >
                     Prénom Nom
@@ -51,11 +51,11 @@
     </div>
     <div class="field">
         <label>Genres</label>
-        <select class="ui fluid dropdown" multiple="" th:field="*{genres}">
+        <select class="ui fluid dropdown" multiple="" th:field="*{genreEntities}">
             <option
-                    th:each="genre: ${genresFilm}"
-                    th:text="${genre.name}"
-                    th:value="${genre.id}"
+                    th:each="genreEntity: ${genresFilm}"
+                    th:text="${genreEntity.name}"
+                    th:value="${genreEntity.id}"
             >
                 Drame
             </option>
@@ -63,7 +63,7 @@
     </div>
     <div class="field">
         <label>Résumé</label>
-        <textarea form="film-form" rows="5" th:field="*{summary}"></textarea>
+        <textarea form="filmEntity-form" rows="5" th:field="*{summary}"></textarea>
     </div>
     <input class="ui button" type="submit" value="Valider">
 </form>
@@ -72,22 +72,22 @@
 
 <form class="ui form"
       method="post"
-      th:action="@{'/film/modrole/'+${play.id}}"
-      th:each="play: ${film.roles}"
-      th:object="${play}"
+      th:action="@{'/filmEntity/modrole/'+${playEntity.id}}"
+      th:each="playEntity: ${filmEntity.roles}"
+      th:object="${playEntity}"
 
 >
-    <input id="film" name="film" th:value="${film.id}" type="hidden">
+    <input id="filmEntity" name="filmEntity" th:value="${filmEntity.id}" type="hidden">
 
     <div class="four fields">
         <div class="five wide field">
             <label>Acteur</label>
             <select name="actor" th:value="*{actor.id}" class="ui search dropdown">
                 <option
-                        th:each="person: ${persons}"
-                        th:selected="${person.id == play.actor.id}"
-                        th:text="${person.givenname}+' '+${person.surname}"
-                        th:value="${person.id}"
+                        th:each="personEntity: ${personEntities}"
+                        th:selected="${personEntity.id == playEntity.actor.id}"
+                        th:text="${personEntity.givenname}+' '+${personEntity.surname}"
+                        th:value="${personEntity.id}"
                 >
                     Prénom Nom
                 </option>
@@ -111,7 +111,7 @@
                     <i class="white check icon icon"></i>
                 </button>
 
-                <a href="#" th:href="@{'/film/rmrole/'+ *{id}}" class="circular ui icon red button">
+                <a href="#" th:href="@{'/filmEntity/rmrole/'+ *{id}}" class="circular ui icon red button">
                     <i class="white close icon icon"></i>
                 </a>
 
@@ -125,19 +125,19 @@
         action="#"
         class="ui form"
         method="post"
-        th:action="@{/film/addrole}"
+        th:action="@{/filmEntity/addrole}"
         th:object="${newrole}"
 >
-    <input id="film" name="film" th:value="${film.id}" type="hidden">
+    <input id="filmEntity" name="filmEntity" th:value="${filmEntity.id}" type="hidden">
     <div class="four fields">
         <div class="five wide field">
             <label>Acteur</label>
             <select name="actor" class="ui search dropdown">
                 <option value="" selected disabled>Choisissez un acteur</option>
                 <option
-                        th:each="person: ${persons}"
-                        th:text="${person.givenname}+' '+${person.surname}"
-                        th:value="${person.id}"
+                        th:each="personEntity: ${personEntities}"
+                        th:text="${personEntity.givenname}+' '+${personEntity.surname}"
+                        th:value="${personEntity.id}"
 
                 >
                     Prénom Nom
@@ -167,7 +167,7 @@
 <div th:include="fragments/layout :: footer-js"></div>
 
 <script type="application/javascript">
-    $('#menu-films').addClass("active");
+    $('#menu-filmEntities').addClass("active");
     $('.ui.dropdown').dropdown();
     $(document).ready(function () {
         tinymce.init({
