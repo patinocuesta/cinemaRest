@@ -1,7 +1,7 @@
 package online.patino.cinemaRest.repository;
 
 import online.patino.cinemaRest.entity.FilmEntity;
-import online.patino.cinemaRest.entity.GenreEntity;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -12,8 +12,7 @@ import java.util.List;
 public interface FilmRepoDao extends JpaRepository<FilmEntity, Serializable> {
     FilmEntity findById(Long Id);
     List<FilmEntity> findByTitle (String title);
-    FilmEntity findByTitleAndId(String title, Long id);
-    List<FilmEntity>findFilmsByGenres(GenreEntity genreEntity);
-
-
+    List<FilmEntity> findByFilm_directorId(Long id);
+    List<FilmEntity> findByGenreEntityId (Long id);
+    List<FilmEntity> findByPersonEntityId (Long id);
 }

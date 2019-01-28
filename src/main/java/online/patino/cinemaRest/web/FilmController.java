@@ -25,14 +25,14 @@ public class FilmController {
 
     @GetMapping("/list")
     public String list(Model model) {
-        Iterable<FilmModel> films = filmManager.getListMFilm();
+        Iterable<FilmModel> films = filmManager.getAllFilmModel();
         model.addAttribute("films", films);
         return "film/list";
     }
 
     @GetMapping("/detail/{id}")
     public String detail(@PathVariable("id") long id, Model model) {
-        model.addAttribute("film", filmManager.getMFilmById(id));
+        model.addAttribute("film", filmManager.getFilmModelById(id));
         return "film/detail";
     }
 
@@ -45,10 +45,10 @@ public class FilmController {
 
     @GetMapping("/mod/{id}")
     public String mod(@PathVariable("id") long id, Model model) {
-        FilmModel film = filmManager.getMFilmById(id);
+        FilmModel film = filmManager.getFilmModelById(id);
         model.addAttribute("title", film.getTitle() + " : modification");
-        model.addAttribute("persons", personManager.getListMPerson());
-        model.addAttribute("genresFilm", genreManager.getListMGenre());
+        model.addAttribute("persons", personManager.findPersonsModelByFilmId(id));
+        model.addAttribute("genresFilm", genreManager.findAllGenreModelByIdFilm(id));
         model.addAttribute("film", film);
        // model.addAttribute("plays", film.);
      //   model.addAttribute("newrole", new PlayEntity());

@@ -1,7 +1,7 @@
-package fr.laerce.cinema.web;
+package online.patino.cinemaRest.web;
 
-import fr.laerce.cinema.model.Genre;
-import fr.laerce.cinema.service.GenreManager;
+import online.patino.cinemaRest.model.GenreModel;
+import online.patino.cinemaRest.service.GenreManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -36,8 +36,8 @@ public class GenreController {
      */
     @GetMapping("")
     public String main(Model model){
-        model.addAttribute("genres", genreManager.getAll());
-        model.addAttribute("newgenre", new Genre());
+        model.addAttribute("genres", genreManager.getAllGenreModel());
+        model.addAttribute("newgenre", new GenreModel());
         return "genre/form";
     }
 

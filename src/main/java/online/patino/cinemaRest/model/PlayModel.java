@@ -4,26 +4,28 @@ import online.patino.cinemaRest.entity.FilmEntity;
 import online.patino.cinemaRest.entity.PersonEntity;
 import online.patino.cinemaRest.entity.PlayEntity;
 
-public class PlayModel {
+import java.io.Serializable;
+
+public class PlayModel implements Serializable {
     private Long id;
-    private FilmEntity filmEntity;
-    private PersonEntity personEntity;
+    private FilmEntity filmModel;
+    private PersonEntity personModel;
     private Integer rank;
     private String name;
 
     private PlayModel(){}
 
-    public PlayModel(Long id, FilmEntity filmEntity, PersonEntity personEntity, Integer rank, String name){
+    public PlayModel(Long id, FilmEntity filmModel, PersonEntity personModel, Integer rank, String name){
         this.id= id;
-        this.filmEntity = filmEntity;
-        this.personEntity = personEntity;
+        this.filmModel = filmModel;
+        this.personModel = personModel;
         this.rank = rank;
         this.name = name;
     }
     public PlayModel(PlayEntity playEntity){
         this.id= playEntity.getId();
-        this.filmEntity = playEntity.getFilmEntity();
-        this.personEntity = playEntity.getPersonEntity();
+        this.filmModel = playEntity.getFilmEntity();
+        this.personModel = playEntity.getPersonEntity();
         this.rank = playEntity.getRank();
         this.name = playEntity.getName();
     }
@@ -35,16 +37,16 @@ public class PlayModel {
         this.id = id;
     }
     public FilmEntity getFilmEntity() {
-        return filmEntity;
+        return filmModel;
     }
     public void setFilmEntity(FilmEntity filmEntity) {
-        this.filmEntity = filmEntity;
+        this.filmModel = filmEntity;
     }
     public PersonEntity getPersonEntity() {
-        return personEntity;
+        return personModel;
     }
     public void setPersonEntity(PersonEntity personEntity) {
-        this.personEntity = personEntity;
+        this.personModel = personEntity;
     }
     public Integer getRank() {
         return rank;

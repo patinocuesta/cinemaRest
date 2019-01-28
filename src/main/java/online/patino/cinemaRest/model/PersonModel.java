@@ -2,9 +2,10 @@ package online.patino.cinemaRest.model;
 
 import online.patino.cinemaRest.entity.PersonEntity;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class PersonModel {
+public class PersonModel implements Serializable {
 
     private Long id;
     private String surname;
@@ -12,7 +13,9 @@ public class PersonModel {
     private String image_path;
     private Date birthday;
 
-    //Nuestro Constructor
+    //Nuestros Constructores
+    public PersonModel(){}
+
     public PersonModel(Long id, String surname, String givenname, String image_path, Date birthday) {
         this.id = id;
         this.surname = surname;

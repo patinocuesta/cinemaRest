@@ -1,8 +1,9 @@
 package online.patino.cinemaRest.model;
 
 import online.patino.cinemaRest.entity.GenreEntity;
+import java.io.Serializable;
 
-public class GenreModel {
+public class GenreModel implements Serializable {
     private Long id;
     private String name;
 
@@ -11,7 +12,6 @@ public class GenreModel {
         this.id= id;
         this.name = name;
     }
-
     public GenreModel(GenreEntity genreEntity){
         this.id= genreEntity.getId();
         this.name = genreEntity.getName();

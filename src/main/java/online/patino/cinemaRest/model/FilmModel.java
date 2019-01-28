@@ -3,9 +3,10 @@ package online.patino.cinemaRest.model;
 import online.patino.cinemaRest.entity.FilmEntity;
 import online.patino.cinemaRest.entity.PersonEntity;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class FilmModel {
+public class FilmModel implements Serializable {
     private Long id;
     private String title;
     private Double rating;
@@ -35,7 +36,7 @@ public class FilmModel {
         this.rating = filmEntity.getRating();
         this.image_path = filmEntity.getImage_path();
         this.summary = filmEntity.getSummary();
-        this.film_director = filmEntity.getFilm_director();
+        this.film_director = filmEntity.getFilm_director() ;
         this.release_date = filmEntity.getRelease_date();
     }
 

@@ -1,6 +1,6 @@
 package online.patino.cinemaRest.service;
 
-import online.patino.cinemaRest.converter.CGenre;
+import online.patino.cinemaRest.converter.DtoToEntity.DtoToEntityGenre;
 import online.patino.cinemaRest.entity.GenreEntity;
 import online.patino.cinemaRest.model.GenreModel;
 import online.patino.cinemaRest.repository.GenreRepoDao;
@@ -18,7 +18,7 @@ public class GenreManager {
 
     @Autowired
     @Qualifier("CGenre")
-    private CGenre cgenre;
+    private DtoToEntityGenre cgenre;
 
     public boolean create (GenreEntity genreEntity){
         try{
@@ -50,19 +50,19 @@ public class GenreManager {
         }
     }
 
-    public GenreModel getMGenreById (Long id){
+    public GenreModel getGenreModelById (Long id){
         return new GenreModel(genreRepoDao.findById(id));
     }
 
-    public List<GenreModel> getListMGenre(){
+    public List<GenreModel> getAllGenreModel(){
         return cgenre.converList(genreRepoDao.findAll());
     }
 
-    public GenreModel getMGenreByIdAndName (Long id, String name){
-        return new GenreModel(genreRepoDao.findByIdAndName(id, name));
-    }
+    public List<GenreModel> findAllGenreModelByIdFilm(Long id){return cgenre.converList(genreRepoDao.findAllGenreByIdFilm(id));}
 
-    public GenreModel getMGenreByName (String name){
+    public GenreModel getGenreModelByIdAndName (Long id, String name){return new GenreModel(genreRepoDao.findByIdAndName(id, name));}
+
+    public GenreModel getGenreModelByName (String name){
         return new GenreModel(genreRepoDao.findByName(name));
     }
 }

@@ -1,7 +1,6 @@
 package online.patino.cinemaRest.service;
 
-import online.patino.cinemaRest.converter.CPerson;
-import online.patino.cinemaRest.entity.PersonEntity;
+import online.patino.cinemaRest.converter.DtoToEntity.DtoToEntityPerson;
 import online.patino.cinemaRest.model.PersonModel;
 import online.patino.cinemaRest.repository.PersonRepoDao;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,19 +17,19 @@ public class PersonManager {
 
     @Autowired
     @Qualifier ("CPerson")
-    private CPerson cperson;
+    private DtoToEntityPerson cperson;
 
-    public boolean create (PersonEntity personEntity){
+    public boolean create (PersonModel personModel){
         try{
-            personRepoDao.save(personEntity);
+            personRepoDao.save(personModel);
             return true;
         }catch(Exception e){
             return false;
         }
     }
-    public boolean update (PersonEntity personEntity){
+    public boolean update (PersonModel personModel){
         try{
-            personRepoDao.save(personEntity);
+            personRepoDao.save(personModel);
             return true;
         }catch(Exception e){
             return false;
@@ -38,31 +37,30 @@ public class PersonManager {
     }
     public boolean delete (Long id,String givenname, String surname){
         try{
-            PersonEntity personEntity = personRepoDao.findByIdAndGivennameAndSurname(id, givenname, surname);
-            personRepoDao.delete(personEntity);
+            PersonModel personModel = personRepoDao.findByIdAndGivennameAndSurname(id, givenname, surname);
+            personRepoDao.delete(personModel);
             return true;
         }catch(Exception e){
             return false;
         }
     }
-    public PersonModel getMPersonById (Long id){
-        return new PersonModel(personRepoDao.findById(id));
+    public PersonModel getPersonModelById (Long id){ return new PersonModel(personRepoDao.findById(id));
     }
 
-    public PersonModel getMPersonByIdGivennameSurname(Long id, String givenname, String surname){
-        return new PersonModel(personRepoDao.findByIdAndGivennameAndSurname(id, givenname, surname));
+    public List<PersonModel> findPersonsModelByFilmId(Long id){
+        return cperson.converList(personRepoDao.findPersonsByFilmId(id));
     }
     public List<PersonModel> getListMPerson(){
         return cperson.converList(personRepoDao.findAll());
     }
 
-    public List<PersonModel> getMPersonByGivennameSurname(String givenname, String surname){
+    public List<PersonModel> getPersonModelByGivennameSurname(String givenname, String surname){
         return cperson.converList(personRepoDao.findByGivennameAndSurname(givenname, surname));
     }
-    public List<PersonModel> getMPersonBySurname(String surname){
+    public List<PersonModel> getPersonModelBySurname(String surname){
         return cperson.converList(personRepoDao.findBySurname(surname));
     }
-    public List<PersonModel> getMPersonByGivenname(String givenname){
+    public List<PersonModel> getMPersonModelByGivenname(String givenname){
         return cperson.converList(personRepoDao.findByGivenname(givenname));
     }
 }

@@ -115,6 +115,5 @@ public class FilmEntity implements Serializable  {
     public void setGenreEntities(Set<GenreEntity> genreEntities) {
         this.genreEntities = genreEntities;
     }
-    public void setDirector (PersonEntity director) {this.film_director = director;}
-    public PersonEntity getDirector(){ return film_director;}
+
 }
